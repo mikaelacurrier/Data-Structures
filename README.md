@@ -11,6 +11,7 @@ Stretch Goals:
  * AVL Trees
  * LRU Caches
 
+
 ## Tasks
 1. Implement each data structure, starting with the queue. Make sure you're in the approriate directory, then run `python3 test_[NAME OF DATA STRUCTURE].py` to run the tests for that data structure and check your progress. Get all the tests passing for each data structure.
 
