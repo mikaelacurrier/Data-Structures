@@ -13,3 +13,6 @@ class Queue:
 
   def len(self):
     return len(self.storage)
+
+# I decided to use a list here because we are only adding and removing
+# to the end, making the list the easiest option
