@@ -72,8 +72,8 @@ class DoublyLinkedList:
       self.tail = None
     return old_head.value
 
-  def add_to_tail(self, value):
 
+  def add_to_tail(self, value):
     if self.tail:
       self.tail.insert_after(value)
       self.tail = self.tail.next
@@ -81,29 +81,59 @@ class DoublyLinkedList:
       self.tail = ListNode(value)
       self.head = ListNode(value)
 
-  def remove_from_tail(self):
-    # if not self.head:
-    #   return None
-    # elif self.head is self.tail:
-    #   old_tail = self.tail
-    #   self.head = None
-    #   self.tail = None
-    #   return old_tail.value
-    # else:
-    #   old_tail = self.tail
-    #   self.tail.delete(old_tail)
-    #   self.tail = old_tail.prev
-    pass
 
+  def remove_from_tail(self):
+    old_tail = self.tail
+    if self.tail == self.head:
+      self.tail = None
+      self.head = None
+      return old_tail.value
+    else:
+      print('old_tail', old_tail.prev)
+      self.tail = self.tail.prev
+      self.tail.next = None
+      return old_tail.value    
+      
 
   def move_to_front(self, node):
-    pass
+    if node == self.head:
+      return
+    elif node == self.tail:
+      self.tail = self.tail.prev
+    node.delete()
+    self.head.insert_before(node.value)
+    self.head = self.head.prev
+
 
   def move_to_end(self, node):
-    pass
+    if node == self.head:
+      if self.head.next:
+        self.head = self.head.next
+      else:
+        self.head = None
+        self.tail = None
+        self.node = None
+    node.delete()
+    self.add_to_tail(node.value)
+
 
   def delete(self, node):
-    pass
+    node.delete()
+    if node == self.head:
+      if node.next:
+        self.head = node.next
+        self.head.prev = None
+      else:
+        self.head = None
+    if node == self.tail:
+      self.tail = None
+
     
   def get_max(self):
-    pass
+    current = self.head
+    current_max = current.value
+    while current:
+      if current.value > current_max:
+        current_max = current.value
+      current = current.next
+    return current_max
